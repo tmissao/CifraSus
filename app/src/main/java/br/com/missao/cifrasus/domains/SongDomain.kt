@@ -3,6 +3,7 @@ package br.com.missao.cifrasus.domains
 import br.com.missao.cifrasus.bases.DomainBase
 import br.com.missao.cifrasus.model.wrappers.ChordWrapper
 import br.com.missao.cifrasus.model.wrappers.PhraseWrapper
+import br.com.missao.cifrasus.model.wrappers.SongWrapper
 import br.com.missao.cifrasus.mvps.SongMvpModelOperations
 import br.com.missao.cifrasus.mvps.SongMvpRequiredPresenterOperations
 
@@ -18,7 +19,10 @@ class SongDomain : DomainBase<SongMvpRequiredPresenterOperations>(),
   val TAG = SongDomain::class.java.simpleName
 
   override fun getSong(id: Long) {
-    val song = mutableListOf(
+    val name = "Smoke on the Water"
+    val artist = "Deep Purple"
+    val tone = "F"
+    val phrases = mutableListOf(
         PhraseWrapper("We all came out to Montreux", mutableListOf(ChordWrapper("G5", 4))),
         PhraseWrapper("On the lake Geneva shoreline", mutableListOf(ChordWrapper("F5", 16), ChordWrapper("G5", 22))),
         PhraseWrapper("To make records with a mobile"),
@@ -60,6 +64,7 @@ class SongDomain : DomainBase<SongMvpRequiredPresenterOperations>(),
         PhraseWrapper("\n")
     )
 
+    val song = SongWrapper(name, artist, tone, phrases)
     presenter?.onGetSong(song)
   }
 

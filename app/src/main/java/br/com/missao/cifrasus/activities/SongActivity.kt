@@ -2,6 +2,7 @@ package br.com.missao.cifrasus.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
@@ -14,11 +15,13 @@ import br.com.missao.cifrasus.extensions.*
 import br.com.missao.cifrasus.interfaces.Logger
 import br.com.missao.cifrasus.model.wrappers.ChordWrapper
 import br.com.missao.cifrasus.model.wrappers.PhraseWrapper
+import br.com.missao.cifrasus.model.wrappers.SongWrapper
 import br.com.missao.cifrasus.mvps.SongMvpPresenterOperations
 import br.com.missao.cifrasus.mvps.SongMvpRequiredViewOperations
 import br.com.missao.cifrasus.utils.PhraseSplitter
 import br.com.missao.cifrasus.utils.PixelDimensions
 import kotlinx.android.synthetic.main.activity_song.*
+import kotlinx.android.synthetic.main.appbar_song.*
 import javax.inject.Inject
 
 /**
@@ -39,7 +42,7 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
   /**
    * Song's data
    */
-   var phrases: List<PhraseWrapper> = listOf()
+   var song: SongWrapper? = null
 
   /**
    * Song's font size defined by user
@@ -72,7 +75,10 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
    */
   fun setupComponents() {
     contextFontSize = PixelDimensions.convertSpToPixels(resources.getDimension(R.dimen.fontsize_title), this.resources)
-    this.setToolbar(appBar, showTitle = false, showHomeButton = false)
+
+    // It is necessary to cast appbarSong as Toolbar because the include tag on XML file. Since
+    // include tag loads a view type
+    this.setToolbar(appbarSong as Toolbar, showTitle = false, showHomeButton = false)
   }
 
   fun setupEvents() {
@@ -113,6 +119,8 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
    * Measures and displays Song's data without ellipsize its content
    */
   private fun displaySongPhrases() {
+    val phrases = song?.phrases ?: listOf()
+
     if (phrases.isEmpty()) return
     val charSize = textViewModel.getCharacterPixelAverage()
     var measuredPhrases = arrayListOf<PhraseWrapper>()
@@ -203,8 +211,10 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
   /**
    * Obtains song's data
    */
-  override fun onGetSong(music: List<PhraseWrapper>) {
-    phrases = music
+  override fun onGetSong(music: SongWrapper) {
+    song = music
+    textSong.text = music.name
+    textArtist.text = music.artist
     if (isLayoutMeasured) {
       displaySongPhrases()
     }

@@ -1,6 +1,7 @@
 package br.com.missao.cifrasus.mvps
 
 import br.com.missao.cifrasus.model.wrappers.PhraseWrapper
+import br.com.missao.cifrasus.model.wrappers.SongWrapper
 
 /**
  * Application's Song MVP
@@ -12,9 +13,9 @@ import br.com.missao.cifrasus.model.wrappers.PhraseWrapper
 interface SongMvpRequiredViewOperations {
 
     /**
-     * Receives Songs chords
+     * Receives Song
      */
-    fun onGetSong(music: List<PhraseWrapper>)
+    fun onGetSong(music: SongWrapper)
 
 }
 
@@ -41,9 +42,9 @@ interface SongMvpPresenterOperations {
 interface SongMvpRequiredPresenterOperations {
 
     /**
-     * Receives Songs chords
+     * Receives Song
      */
-    fun onGetSong(music: List<PhraseWrapper>)
+    fun onGetSong(music: SongWrapper)
 
 }
 
