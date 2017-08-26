@@ -11,9 +11,9 @@ import android.support.v7.widget.Toolbar
 /**
  * Defines a toolbar for [AppCompatActivity]
  */
-fun AppCompatActivity.setToolbar(toolbar: Toolbar, showTitle: Boolean = true) {
+fun AppCompatActivity.setToolbar(toolbar: Toolbar, showTitle: Boolean = true, showHomeButton: Boolean = true) {
     this.setSupportActionBar(toolbar)
-    this.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    this.supportActionBar?.setDisplayHomeAsUpEnabled(showHomeButton)
     this.supportActionBar?.setDisplayShowTitleEnabled(showTitle)
 
     if (!showTitle) {

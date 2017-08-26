@@ -44,7 +44,7 @@ fun TextView.getCharacterPixelAverage(): Int {
 
     variance /= charactersWidth.size
     val standardDeviation = Math.sqrt(variance)
-    val charPixelSize = Math.round(average - (standardDeviation / 4)).toInt()
+    val charPixelSize = Math.round(average - (standardDeviation / 3)).toInt()
 
     return charPixelSize
 }

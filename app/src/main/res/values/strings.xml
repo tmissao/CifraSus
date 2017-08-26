@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CifraSus</string>
+    <string name="menu_song_increase_font">Aumentar Fonte</string>
+    <string name="menu_song_decrease_font">Diminuir Fonte</string>
 </resources>
