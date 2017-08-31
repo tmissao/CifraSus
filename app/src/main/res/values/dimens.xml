@@ -4,6 +4,15 @@
     <!-- Default Margin -->
     <dimen name="activity_margin">16dp</dimen>
 
+    <!-- Fab Margin -->
+    <dimen name= "fab_normal_margin">16dp</dimen>
+    <dimen name= "fab_mini_margin">24dp</dimen>
+
+    <!-- Cards -->
+    <dimen name="card_elevation_raised">8dp</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
+
+
     <!-- Font-Size -->
     <dimen name="fontsize_headline">24sp</dimen>
     <dimen name="fontsize_title">20sp</dimen>
@@ -19,4 +28,9 @@
     <dimen name="space_divider">8dp</dimen>
     <dimen name="space_small_views">5dp</dimen>
     <dimen name="space_little_views">2dp</dimen>
+
+
+    <!-- Song Activity -->
+    <dimen name="card_padding_end">85dp</dimen>
+
 </resources>

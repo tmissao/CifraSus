@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -46,4 +47,140 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardChangeTone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="214dp"
+        android:layout_marginEnd="@dimen/card_padding_end"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation_raised"
+        android:visibility="invisible"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_tone_song_activity"
+            android:textColor="@color/secondaryTextColor"
+            android:background="@color/white"
+            android:paddingTop="@dimen/space_small_views"
+            android:paddingBottom="@dimen/space_small_views"
+            android:paddingEnd="@dimen/space_medium_views"
+            android:paddingStart="@dimen/space_medium_views"
+            android:fontFamily="sans-serif-medium"
+            />
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabChangeTone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="@dimen/fab_mini_margin"
+        android:layout_marginBottom="206dp"
+        app:srcCompat="@drawable/ic_tone_change"
+        />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardFontSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="155dp"
+        android:layout_marginEnd="@dimen/card_padding_end"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation_raised"
+        android:visibility="invisible"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_font_song_activity"
+            android:textColor="@color/secondaryTextColor"
+            android:background="@color/white"
+            android:paddingTop="@dimen/space_small_views"
+            android:paddingBottom="@dimen/space_small_views"
+            android:paddingEnd="@dimen/space_medium_views"
+            android:paddingStart="@dimen/space_medium_views"
+            android:fontFamily="sans-serif-medium"
+            />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabFontSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="@dimen/fab_mini_margin"
+        android:layout_marginBottom="148dp"
+        app:srcCompat="@drawable/ic_format_size"
+        />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardAddList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="98dp"
+        android:layout_marginEnd="@dimen/card_padding_end"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation_raised"
+        android:visibility="invisible"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_in_playlist_song_activity"
+            android:textColor="@color/secondaryTextColor"
+            android:background="@color/white"
+            android:paddingTop="@dimen/space_small_views"
+            android:paddingBottom="@dimen/space_small_views"
+            android:paddingEnd="@dimen/space_medium_views"
+            android:paddingStart="@dimen/space_medium_views"
+            android:fontFamily="sans-serif-medium"
+            />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAddList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="@dimen/fab_mini_margin"
+        android:layout_marginBottom="90dp"
+        app:srcCompat="@drawable/ic_playlist_add"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_normal_margin"
+        app:srcCompat="@drawable/ic_add"
+        />
+
+    <FrameLayout
+        android:id="@+id/frameBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:elevation="5dp"
+        android:clickable="true"
+        android:background="@color/whiteOpacity"
+        />
+
 </android.support.design.widget.CoordinatorLayout>

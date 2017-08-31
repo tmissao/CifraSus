@@ -2,4 +2,10 @@
     <string name="app_name">CifraSus</string>
     <string name="menu_song_increase_font">Aumentar Fonte</string>
     <string name="menu_song_decrease_font">Diminuir Fonte</string>
+
+    <string name="change_tone_song_activity">Alterar Tom</string>
+    <string name="change_font_song_activity">Ajustar Fonte</string>
+    <string name="add_in_playlist_song_activity">Adicionar em lista </string>
+
+
 </resources>
