@@ -9,6 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_small_views"
         android:ellipsize="end"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:textColor="@color/secondaryTextColor"
+        />
 
 </FrameLayout>
