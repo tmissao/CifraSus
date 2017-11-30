@@ -8,6 +8,8 @@
     <string name="add_in_playlist_song_activity">Adicionar em lista </string>
 
     <string name="select_font_size">Ajuste tamanho da fonte</string>
+    <string name="select_tone">Ajuste o tom</string>
     <string name="positive_button_text">OK</string>
+    <string name="negative_button_text">Cancel</string>
 
 </resources>

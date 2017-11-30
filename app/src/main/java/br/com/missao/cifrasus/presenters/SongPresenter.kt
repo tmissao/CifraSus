@@ -21,11 +21,19 @@ class SongPresenter(domain: SongMvpModelOperations)
     domain?.getSong(id)
   }
 
+  override fun changeTone(song: SongWrapper, degree: Int) {
+    domain?.changeTone(song, degree)
+  }
+
   override fun setView(view: SongMvpRequiredViewOperations) {
     super.view = view
   }
 
   override fun onGetSong(music: SongWrapper) {
     view?.onGetSong(music)
+  }
+
+  override fun onChangeTone(song: SongWrapper) {
+    view?.onChangeTone(song)
   }
 }

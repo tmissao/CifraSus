@@ -1,11 +1,13 @@
 package br.com.missao.cifrasus.domains
 
 import br.com.missao.cifrasus.bases.DomainBase
+import br.com.missao.cifrasus.constants.Chord
 import br.com.missao.cifrasus.model.wrappers.ChordWrapper
 import br.com.missao.cifrasus.model.wrappers.PhraseWrapper
 import br.com.missao.cifrasus.model.wrappers.SongWrapper
 import br.com.missao.cifrasus.mvps.SongMvpModelOperations
 import br.com.missao.cifrasus.mvps.SongMvpRequiredPresenterOperations
+import java.util.*
 
 /**
  * Resolves [SongMvpModelOperations]
@@ -21,7 +23,7 @@ class SongDomain : DomainBase<SongMvpRequiredPresenterOperations>(),
   override fun getSong(id: Long) {
     val name = "Smoke on the Water"
     val artist = "Deep Purple"
-    val tone = "F"
+    val tone = Chord.F
     val phrases = mutableListOf(
         PhraseWrapper("We all came out to Montreux", mutableListOf(ChordWrapper("G5", 4))),
         PhraseWrapper("On the lake Geneva shoreline", mutableListOf(ChordWrapper("F5", 16), ChordWrapper("G5", 22))),
@@ -66,6 +68,34 @@ class SongDomain : DomainBase<SongMvpRequiredPresenterOperations>(),
 
     val song = SongWrapper(name, artist, tone, phrases)
     presenter?.onGetSong(song)
+  }
+
+
+  /**
+   * Updates song's tone according to the [degree]
+   */
+  override fun changeTone(song: SongWrapper, degree: Int) {
+    val phrases = ArrayList<PhraseWrapper>()
+    val tone = Chord.change(song.tone, degree = degree)
+    song.phrases.forEach {
+      val chords = ArrayList<ChordWrapper>()
+      it.chords.forEach {
+        chords.add(updateChordTone(it, degree = degree))
+      }
+      phrases.add(it.copy(chords = chords))
+    }
+
+    presenter?.onChangeTone(song.copy(phrases = phrases, tone = tone))
+  }
+
+  /**
+   * Updates chord's tone according to the [degree]
+   */
+  private fun updateChordTone(wrapper: ChordWrapper, degree: Int) : ChordWrapper {
+    val base = Chord.baseChord(wrapper.value)
+    val variation = Chord.notBaseChord(wrapper.value)
+    val updateChord = Chord.change(base, degree = degree)
+    return wrapper.copy(value = updateChord.value + variation)
   }
 
   override fun setPresenter(presenter: SongMvpRequiredPresenterOperations) {

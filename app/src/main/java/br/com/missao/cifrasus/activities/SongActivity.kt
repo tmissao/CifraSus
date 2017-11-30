@@ -16,6 +16,7 @@ import android.widget.SeekBar
 import android.widget.TextView
 import br.com.missao.cifrasus.R
 import br.com.missao.cifrasus.app.AppPreferences
+import br.com.missao.cifrasus.constants.Chord
 import br.com.missao.cifrasus.extensions.*
 import br.com.missao.cifrasus.interfaces.Logger
 import br.com.missao.cifrasus.model.wrappers.ChordWrapper
@@ -65,16 +66,6 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
      */
     var isFabRotated = false
 
-    /**
-     * Font Size Seek Bar
-     */
-    var seekFontSize: SeekBar? = null
-
-    /**
-     * Text Font Size
-     */
-    var textFontSize: TextView? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song)
@@ -116,6 +107,11 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
         fabFontSize.setOnClickListener {
             toggleOptions()
             buildTypographyDialog()
+        }
+
+        fabChangeTone.setOnClickListener {
+          toggleOptions()
+          buildChangeDialog()
         }
     }
 
@@ -368,6 +364,9 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
      */
     private fun buildTypographyDialog() {
         val inflater = this.layoutInflater
+        var seekFontSize: SeekBar? = null
+        var textFontSize: TextView? = null
+
         val dialogView = inflater.inflate(R.layout.dialog_font_size, null).apply {
             seekFontSize = findViewById<SeekBar>(R.id.seekFontSize)
             textFontSize = findViewById<TextView>(R.id.textLyrics)
@@ -385,7 +384,7 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                contextFontSize = progress.toFloat()
+                contextFontSize = if ( progress > 0 ) progress.toFloat() else 1.toFloat()
                 textFontSize?.setTextSize(TypedValue.COMPLEX_UNIT_SP, contextFontSize)
                 textViewModel.setTextSize(TypedValue.COMPLEX_UNIT_SP, contextFontSize)
                 displaySongPhrases()
@@ -394,6 +393,55 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
 
         builder.show()
     }
+
+  /**
+   * Builds Material Dialog to adjust music tone
+   */
+  private fun buildChangeDialog() {
+    val inflater = this.layoutInflater
+    var seekToneDegree: SeekBar? = null
+    var textToneFrom: TextView? = null
+    var textToneTo: TextView? = null
+    var textToneDifference: TextView? = null
+
+    val dialogView = inflater.inflate(R.layout.dialog_change_tone, null).apply {
+      seekToneDegree = findViewById<SeekBar>(R.id.seekToneDegree)
+      textToneFrom = findViewById<TextView>(R.id.textToneFrom)
+      textToneTo = findViewById<TextView>(R.id.textToneTo)
+      textToneDifference = findViewById<TextView>(R.id.textToneDifference)
+    }
+
+
+    val middle = ( seekToneDegree?.max ?: 0 ) / 2
+    var difference = 0
+    seekToneDegree?.progress = middle
+    textToneFrom?.text = song?.tone?.value
+    textToneTo?.text = song?.tone?.value
+    textToneDifference?.text = resources.getQuantityString(R.plurals.tones, 0, 0.toString())
+
+    seekToneDegree?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+      override fun onStartTrackingTouch(seekBar: SeekBar) {}
+      override fun onStopTrackingTouch(seekBar: SeekBar) {}
+      override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+        difference = progress - middle
+        val displayDifference = (difference.toFloat()/2)
+        val normalized = (Math.abs(displayDifference) + 0.5).toInt()
+        textToneDifference?.text = resources.getQuantityString(R.plurals.tones, normalized, displayDifference.toString())
+        song?.let { textToneTo?.text = Chord.change(it.tone, difference).value }
+      }
+    })
+
+    val builder = AlertDialog.Builder(this, R.style.AlertDialogStyle).apply {
+      this.setView(dialogView)
+      this.setTitle(getString(R.string.select_tone))
+      this.setPositiveButton(getString(R.string.positive_button_text)) { dialogInterface, i ->
+        song?.let { presenter.changeTone(it, difference) }
+      }
+      this.setNegativeButton(getString(R.string.negative_button_text), null)
+    }
+
+    builder.show()
+  }
 
     /**
      * Obtains song's data
@@ -405,5 +453,12 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
         if (isLayoutMeasured) {
             displaySongPhrases()
         }
+    }
+
+    /**
+    * Obtains song's changed tone data
+    */
+    override fun onChangeTone(song: SongWrapper) {
+      onGetSong(song)
     }
 }

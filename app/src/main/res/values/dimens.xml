@@ -29,6 +29,8 @@
     <dimen name="space_small_views">5dp</dimen>
     <dimen name="space_little_views">2dp</dimen>
 
+    <!-- Image -->
+    <dimen name="image_size">48dp</dimen>
 
     <!-- Song Activity -->
     <dimen name="card_padding_end">85dp</dimen>

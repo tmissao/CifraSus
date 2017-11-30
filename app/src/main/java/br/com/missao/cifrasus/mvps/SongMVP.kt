@@ -17,6 +17,11 @@ interface SongMvpRequiredViewOperations {
      */
     fun onGetSong(music: SongWrapper)
 
+    /**
+    * Receives Song with tone changed
+    */
+    fun onChangeTone(song: SongWrapper)
+
 }
 
 /**
@@ -28,6 +33,11 @@ interface SongMvpPresenterOperations {
      * Obtains Song Chords by it's [id]
      */
     fun getSong(id: Long)
+
+    /**
+    * Changes Music Tone by [degree]
+    */
+    fun changeTone(song: SongWrapper, degree: Int)
 
     /**
      * Defines view reference
@@ -46,6 +56,11 @@ interface SongMvpRequiredPresenterOperations {
      */
     fun onGetSong(music: SongWrapper)
 
+    /**
+    * Receives Song with tone changed
+    */
+    fun onChangeTone(song: SongWrapper)
+
 }
 
 /**
@@ -57,6 +72,11 @@ interface SongMvpModelOperations {
      * Obtains Song Chords by it's [id]
      */
     fun getSong(id: Long)
+
+    /**
+    * Changes Music Tone by [degree]
+    */
+    fun changeTone(song: SongWrapper, degree: Int)
 
     /**
      * Defines presenter reference

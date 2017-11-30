@@ -2,6 +2,7 @@ package br.com.missao.cifrasus.model.wrappers
 
 import android.os.Parcel
 import android.os.Parcelable
+import br.com.missao.cifrasus.constants.Chord
 
 /**
  * Constains Song information as Name, Artist, Tone and Chords
@@ -9,14 +10,14 @@ import android.os.Parcelable
 data class SongWrapper(
     val name: String,
     val artist: String,
-    val tone: String,
+    val tone: Chord,
     val phrases: List<PhraseWrapper>
 
 ) : Parcelable {
   constructor(source: Parcel) : this(
       source.readString(),
       source.readString(),
-      source.readString(),
+      Chord.values()[source.readInt()],
       source.createTypedArrayList(PhraseWrapper.CREATOR)
   )
 
@@ -25,7 +26,7 @@ data class SongWrapper(
   override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
     writeString(name)
     writeString(artist)
-    writeString(tone)
+    writeInt(tone.ordinal)
     writeTypedList(phrases)
   }
 
