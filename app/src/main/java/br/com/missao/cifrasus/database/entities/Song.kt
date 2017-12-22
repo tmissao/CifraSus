@@ -2,6 +2,7 @@ package br.com.missao.cifrasus.database.entities
 
 import br.com.missao.cifrasus.constants.Chord
 import br.com.missao.cifrasus.interfaces.Entity
+import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import java.util.*
@@ -12,38 +13,43 @@ import java.util.*
 open class Song() : RealmObject(), Entity {
 
   @PrimaryKey override var id: String? = null
+  var name: String
   var artist: String
   var originalToneValue: String
   var toneValue: String
   var lastView: Date
+  var phrases: RealmList<Phrase>
 
   init {
     this.id = null
+    this.name = ""
     this.artist = ""
     this.originalToneValue = ""
     this.toneValue = ""
     this.lastView = Date()
+    this.phrases = RealmList()
   }
 
-  constructor(artist: String, originalTone: Chord, tone: Chord,
+  constructor(name: String, artist: String, originalTone: Chord, tone: Chord,
       lastView: Date = Date(), id: String = UUID.randomUUID().toString()) : this() {
     this.id = id
+    this.name = name
     this.artist = artist
     this.originalToneValue = originalTone.value
     this.toneValue = tone.value
     this.lastView = lastView
   }
 
-  fun getOriginalTone() : Chord? {
-    return if (originalToneValue.length >= 0) Chord.getByValue(this.originalToneValue) else null
+  fun getOriginalTone(): Chord {
+    return Chord.getByValue(this.originalToneValue)
   }
 
   fun setOriginalTone(tone: Chord) {
     this.originalToneValue = tone.value
   }
 
-  fun getTone() : Chord? {
-    return if (toneValue.length >= 0) Chord.getByValue(this.toneValue) else null
+  fun getTone(): Chord {
+    return Chord.getByValue(this.toneValue)
   }
 
   fun setTone(tone: Chord) {

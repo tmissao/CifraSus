@@ -8,33 +8,38 @@ import br.com.missao.cifrasus.constants.Chord
  * Constains Song information as Name, Artist, Tone and Chords
  */
 data class SongWrapper(
+    val id: String,
     val name: String,
     val artist: String,
     val tone: Chord,
     val phrases: List<PhraseWrapper>
 
 ) : Parcelable {
-  constructor(source: Parcel) : this(
-      source.readString(),
-      source.readString(),
-      Chord.values()[source.readInt()],
-      source.createTypedArrayList(PhraseWrapper.CREATOR)
-  )
+  constructor(parcel: Parcel) : this(
+      parcel.readString(),
+      parcel.readString(),
+      parcel.readString(),
+      Chord.values()[parcel.readInt()],
+      parcel.createTypedArrayList(PhraseWrapper.CREATOR))
 
-  override fun describeContents() = 0
-
-  override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
-    writeString(name)
-    writeString(artist)
-    writeInt(tone.ordinal)
-    writeTypedList(phrases)
+  override fun writeToParcel(parcel: Parcel, flags: Int) {
+    parcel.writeString(id)
+    parcel.writeString(name)
+    parcel.writeString(artist)
+    parcel.writeTypedList(phrases)
   }
 
-  companion object {
-    @JvmField
-    val CREATOR: Parcelable.Creator<SongWrapper> = object : Parcelable.Creator<SongWrapper> {
-      override fun createFromParcel(source: Parcel): SongWrapper = SongWrapper(source)
-      override fun newArray(size: Int): Array<SongWrapper?> = arrayOfNulls(size)
+  override fun describeContents(): Int {
+    return 0
+  }
+
+  companion object CREATOR : Parcelable.Creator<SongWrapper> {
+    override fun createFromParcel(parcel: Parcel): SongWrapper {
+      return SongWrapper(parcel)
+    }
+
+    override fun newArray(size: Int): Array<SongWrapper?> {
+      return arrayOfNulls(size)
     }
   }
 }

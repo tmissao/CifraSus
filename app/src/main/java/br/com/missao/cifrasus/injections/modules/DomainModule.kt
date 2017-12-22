@@ -2,6 +2,8 @@ package br.com.missao.cifrasus.injections.modules
 
 import br.com.missao.cifrasus.database.daos.SongDao
 import br.com.missao.cifrasus.domains.SongDomain
+import br.com.missao.cifrasus.interfaces.Logger
+import br.com.missao.cifrasus.mappers.SongMapper
 import br.com.missao.cifrasus.mvps.SongMvpModelOperations
 import dagger.Module
 import dagger.Provides
@@ -18,6 +20,7 @@ class DomainModule {
    */
   @Provides
   @Singleton
-  fun providesSongDomain(songDao: SongDao): SongMvpModelOperations
-      = SongDomain(songDao)
+  fun providesSongDomain(songDao: SongDao, songMapper: SongMapper, logger: Logger):
+      SongMvpModelOperations
+      = SongDomain(songDao, songMapper, logger)
 }
