@@ -11,11 +11,11 @@ import javax.inject.Singleton
  */
 @Singleton
 @Component(modules = arrayOf(AppModule::class, RetrofitModule::class, ApiModule::class, LoggerModule::class,
-        MapperModule::class, DomainModule::class, PresenterModule::class))
+    MapperModule::class, DomainModule::class, RealmModule::class, DaoModule::class, PresenterModule::class))
 interface ViewComponent {
 
-    /**
-     * Injects in [SongActivity] its dependencies
-     */
-    fun inject(activity: SongActivity)
+  /**
+   * Injects in [SongActivity] its dependencies
+   */
+  fun inject(activity: SongActivity)
 }

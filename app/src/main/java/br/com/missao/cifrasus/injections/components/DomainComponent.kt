@@ -11,7 +11,7 @@ import javax.inject.Singleton
  */
 @Singleton
 @Component(modules = arrayOf(AppModule::class, RetrofitModule::class, ApiModule::class, LoggerModule::class,
-    MapperModule::class, DomainModule::class))
+    MapperModule::class, DomainModule::class, RealmModule::class, DaoModule::class))
 interface DomainComponent {
 
   /**

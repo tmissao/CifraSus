@@ -2,6 +2,7 @@ package br.com.missao.cifrasus.domains
 
 import br.com.missao.cifrasus.bases.DomainBase
 import br.com.missao.cifrasus.constants.Chord
+import br.com.missao.cifrasus.database.daos.SongDao
 import br.com.missao.cifrasus.model.wrappers.ChordWrapper
 import br.com.missao.cifrasus.model.wrappers.PhraseWrapper
 import br.com.missao.cifrasus.model.wrappers.SongWrapper
@@ -12,7 +13,7 @@ import java.util.*
 /**
  * Resolves [SongMvpModelOperations]
  */
-class SongDomain : DomainBase<SongMvpRequiredPresenterOperations>(),
+class SongDomain(val songDao: SongDao) : DomainBase<SongMvpRequiredPresenterOperations>(),
     SongMvpModelOperations {
 
   /**
@@ -91,7 +92,7 @@ class SongDomain : DomainBase<SongMvpRequiredPresenterOperations>(),
   /**
    * Updates chord's tone according to the [degree]
    */
-  private fun updateChordTone(wrapper: ChordWrapper, degree: Int) : ChordWrapper {
+  private fun updateChordTone(wrapper: ChordWrapper, degree: Int): ChordWrapper {
     val base = Chord.baseChord(wrapper.value)
     val variation = Chord.notBaseChord(wrapper.value)
     val updateChord = Chord.change(base, degree = degree)
