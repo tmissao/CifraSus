@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/appbar"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/appbar"
+  android:layout_width="match_parent"
+  android:layout_height="?attr/actionBarSize"
+  android:background="?attr/colorPrimary"
+  android:theme="@style/ThemeOverlay.AppCompat.Dark"
+  app:layout_scrollFlags="scroll|enterAlways"
+  >
+
+  <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:background="?attr/colorPrimary"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <TextView
+      android:id="@+id/textSong"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:ellipsize="end"
+      android:fontFamily="sans-serif-medium"
+      android:maxLines="1"
+      android:textColor="@color/white"
+      android:textSize="@dimen/fontsize_title"
+      tools:text="Smoke on the Water"
+      />
 
-        <TextView
-            android:id="@+id/textSong"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            tools:text="Smoke on the Water"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="@dimen/fontsize_title"
-            android:ellipsize="end"
-            android:maxLines="1"
-            />
+    <TextView
+      android:id="@+id/textArtist"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:textColor="@color/white"
+      android:textSize="@dimen/fontsize_subhead"
+      tools:text="Deep Purple"
+      />
 
-        <TextView
-            android:id="@+id/textArtist"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            tools:text="Deep Purple"
-            android:textSize="@dimen/fontsize_subhead"
-            android:ellipsize="end"
-            android:maxLines="1"
-            />
-
-    </LinearLayout>
+  </LinearLayout>
 
 </android.support.v7.widget.Toolbar>

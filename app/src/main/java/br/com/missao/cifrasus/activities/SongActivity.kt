@@ -2,6 +2,7 @@ package br.com.missao.cifrasus.activities
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.support.v4.widget.NestedScrollView
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.CardView
@@ -102,6 +103,19 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
 
   fun setupEvents() {
     addMeasureListener()
+
+    /**
+     * Hides FAB button on Scroll
+     */
+    scrollView.setOnScrollChangeListener(object : NestedScrollView.OnScrollChangeListener {
+      override fun onScrollChange(v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {
+        if (scrollY > oldScrollY && fabOptions.visibility == View.VISIBLE) {
+          fabOptions.hide()
+        } else if (scrollY <= oldScrollY && fabOptions.visibility != View.VISIBLE) {
+          fabOptions.show()
+        }
+      }
+    })
 
     fabOptions.setOnClickListener {
       toggleOptions()

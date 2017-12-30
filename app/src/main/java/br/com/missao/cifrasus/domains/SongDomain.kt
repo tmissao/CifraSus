@@ -36,8 +36,8 @@ class SongDomain(val songDao: SongDao, val songMapper: SongMapper, val logger: L
 
     Observable.defer {
       realm = Realm.getDefaultInstance()
-      //Observable.just(this.populateDatabase())
-      Observable.just("d037e772-cc28-4193-9116-b48605007b22")
+      val song = songDao.getAll(realm).first()
+      Observable.just(song?.id ?: this.populateDatabase())
     }
         .subscribeOn(Schedulers.io())
         .map { songDao.getById(realm, it)!! }
