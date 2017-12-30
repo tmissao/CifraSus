@@ -7,8 +7,6 @@ import java.util.*
  */
 enum class Chord(val value: String, val index: Int) {
 
-
-
   C("C", 0), Csus("C#", 1), D("D", 2), Dsus("D#", 3), E("E", 4), F("F", 5), Fsus("F#", 6),
   G("G", 7), Gsus("G#", 8), A("A", 9), Asus("Bb", 10), B("B", 11);
 
@@ -45,14 +43,14 @@ enum class Chord(val value: String, val index: Int) {
     /**
      * Obtains a [Chord] by its string value
      */
-    fun getByValue(value: String) : Chord {
+    fun getByValue(value: String): Chord {
       return map[value.toUpperCase()] ?: throw IllegalArgumentException("Chord value $value not found")
     }
 
     /**
      * Changes chord increasing [degree]
      */
-    fun change(chord: Chord, degree: Int) : Chord {
+    fun change(chord: Chord, degree: Int): Chord {
       val newTone = (chord.index + degree + array.size) % array.size
       return array[newTone]
     }
@@ -60,7 +58,7 @@ enum class Chord(val value: String, val index: Int) {
     /**
      * Transforms a complex chord like Am7 to its base chord A
      */
-    fun baseChord(value: String) : Chord {
+    fun baseChord(value: String): Chord {
       val clean = REGEX_CLEAN_CHORD.find(value)?.groupValues?.get(0)
       return clean?.let { getByValue(it) } ?: throw IllegalArgumentException("Unable to clean Chord $value")
     }
@@ -68,7 +66,7 @@ enum class Chord(val value: String, val index: Int) {
     /**
      * Obtains the extra information (not base chord) of a chord. Ex Am7 -> 7
      */
-    fun notBaseChord(value: String) : String? {
+    fun notBaseChord(value: String): String? {
       val match = REGEX_NEGATE_CLEAN_CHORD.find(value)
       return match?.groupValues?.get(0) ?: String()
     }
@@ -77,7 +75,7 @@ enum class Chord(val value: String, val index: Int) {
   /**
    * Calculates the difference of degrees between another [chord]
    */
-  fun difference(chord: Chord) : Int {
+  fun difference(chord: Chord): Int {
     return chord.index - this.index
   }
 }

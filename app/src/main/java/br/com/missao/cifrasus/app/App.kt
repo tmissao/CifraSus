@@ -6,8 +6,6 @@ import br.com.missao.cifrasus.injections.components.DaggerAppComponent
 import br.com.missao.cifrasus.injections.components.DaggerViewComponent
 import br.com.missao.cifrasus.injections.components.ViewComponent
 import br.com.missao.cifrasus.injections.modules.AppModule
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
@@ -36,17 +34,11 @@ open class App : Application() {
   private fun setupRealm() {
     Realm.init(this)
 
-    Observable.just(1)
-        .subscribeOn(Schedulers.io())
-        .map {
-          RealmConfiguration.Builder()
-              .name(Realm.DEFAULT_REALM_NAME)
-              .schemaVersion(0)
-              .deleteRealmIfMigrationNeeded()
-              .build()
-        }
-        .observeOn(Schedulers.io())
-        .subscribe { Realm.setDefaultConfiguration(it) }
+    RealmConfiguration.Builder()
+        .name(Realm.DEFAULT_REALM_NAME)
+        .schemaVersion(0)
+        .deleteRealmIfMigrationNeeded()
+        .build().apply { Realm.setDefaultConfiguration(this) }
   }
 
   /**

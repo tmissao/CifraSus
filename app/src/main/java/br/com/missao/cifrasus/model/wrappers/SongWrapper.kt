@@ -12,6 +12,7 @@ data class SongWrapper(
     val name: String,
     val artist: String,
     val tone: Chord,
+    val originalTone: Chord,
     val phrases: List<PhraseWrapper>
 
 ) : Parcelable {
@@ -20,12 +21,15 @@ data class SongWrapper(
       parcel.readString(),
       parcel.readString(),
       Chord.values()[parcel.readInt()],
+      Chord.values()[parcel.readInt()],
       parcel.createTypedArrayList(PhraseWrapper.CREATOR))
 
   override fun writeToParcel(parcel: Parcel, flags: Int) {
     parcel.writeString(id)
     parcel.writeString(name)
     parcel.writeString(artist)
+    parcel.writeInt(tone.index)
+    parcel.writeInt(originalTone.index)
     parcel.writeTypedList(phrases)
   }
 

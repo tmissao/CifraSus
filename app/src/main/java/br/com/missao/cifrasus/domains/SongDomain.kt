@@ -1,6 +1,5 @@
 package br.com.missao.cifrasus.domains
 
-import android.util.Log
 import br.com.missao.cifrasus.bases.DomainBase
 import br.com.missao.cifrasus.constants.Chord
 import br.com.missao.cifrasus.database.daos.SongDao
@@ -14,6 +13,10 @@ import br.com.missao.cifrasus.model.wrappers.PhraseWrapper
 import br.com.missao.cifrasus.model.wrappers.SongWrapper
 import br.com.missao.cifrasus.mvps.SongMvpModelOperations
 import br.com.missao.cifrasus.mvps.SongMvpRequiredPresenterOperations
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import io.realm.Realm
 import io.realm.RealmList
 
 /**
@@ -29,26 +32,30 @@ class SongDomain(val songDao: SongDao, val songMapper: SongMapper, val logger: L
   val TAG = SongDomain::class.java.simpleName
 
   override fun getSong(id: Long) {
-    val identifier = this.populateDatabase()
-    Log.d("Database Song id", identifier)
+    lateinit var realm: Realm
 
-    /*Observable.defer { Observable.just(this.populateDatabase()) }
+    Observable.defer {
+      realm = Realm.getDefaultInstance()
+      //Observable.just(this.populateDatabase())
+      Observable.just("d037e772-cc28-4193-9116-b48605007b22")
+    }
         .subscribeOn(Schedulers.io())
-        .map { songDao.getById(it)!! }
+        .map { songDao.getById(realm, it)!! }
         .map(songMapper::toWrapper)
+        .map {
+          if (it.tone == it.originalTone) {
+            it
+          } else {
+            updateSongTone(it, it.originalTone.difference(it.tone))
+          }
+        }
+        .doOnTerminate { realm.close() }
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
             { presenter?.onGetSong(it) },
             { logger.e(TAG, it) }
-        )*/
+        )
 
-
-    val entity = songDao.getById(identifier)
-    Log.d("song", entity?.name)
-
-    entity?.let {
-      presenter?.onGetSong(songMapper.toWrapper(entity))
-    }
   }
 
 
@@ -56,9 +63,28 @@ class SongDomain(val songDao: SongDao, val songMapper: SongMapper, val logger: L
    * Updates song's tone according to the [degree]
    */
   override fun changeTone(song: SongWrapper, degree: Int) {
+    lateinit var realm: Realm
+
+    val updatedSong = updateSongTone(song, degree)
+    presenter?.onChangeTone(updatedSong)
+
+    Observable.defer {
+      realm = Realm.getDefaultInstance()
+      Observable.just(songDao.getById(realm, song.id))
+    }
+        .subscribeOn(Schedulers.io())
+        .doOnTerminate { realm.close() }
+        .map { it.copy(tone = updatedSong.tone) }
+        .subscribe(
+            { songDao.save(realm, it) },
+            { logger.e(TAG, it) }
+        )
+  }
+
+  private fun updateSongTone(wrapper: SongWrapper, degree: Int): SongWrapper {
     val phrases = ArrayList<PhraseWrapper>()
-    val tone = Chord.change(song.tone, degree = degree)
-    song.phrases.forEach {
+    val tone = Chord.change(wrapper.originalTone, degree = degree)
+    wrapper.phrases.forEach {
       val chords = ArrayList<ChordWrapper>()
       it.chords.forEach {
         chords.add(updateChordTone(it, degree = degree))
@@ -66,7 +92,7 @@ class SongDomain(val songDao: SongDao, val songMapper: SongMapper, val logger: L
       phrases.add(it.copy(chords = chords))
     }
 
-    presenter?.onChangeTone(song.copy(phrases = phrases, tone = tone))
+    return wrapper.copy(phrases = phrases, tone = tone)
   }
 
   /**
@@ -246,7 +272,7 @@ class SongDomain(val songDao: SongDao, val songMapper: SongMapper, val logger: L
         Phrase("\n")
     )
 
-    songDao.save(song)
+    songDao.save(Realm.getDefaultInstance(), song)
     return song.id ?: ""
   }
 

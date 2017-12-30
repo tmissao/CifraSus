@@ -10,12 +10,12 @@ import java.util.*
 /**
  * Base DAO implementing common methods
  */
-abstract class DaoBase<T>(val realm: Realm, val clazz: Class<T>) : DAO<T> where T : RealmObject, T : Entity {
+abstract class DaoBase<T>(val clazz: Class<T>) : DAO<T> where T : RealmObject, T : Entity {
 
   /**
    * Executes Realm's operations inside a transaction
    */
-  inline fun transaction(element: T, crossinline body: (T) -> Unit) {
+  inline fun transaction(realm: Realm, element: T, crossinline body: (T) -> Unit) {
     realm.executeTransaction {
       body(element)
     }
@@ -24,38 +24,38 @@ abstract class DaoBase<T>(val realm: Realm, val clazz: Class<T>) : DAO<T> where 
   /**
    * Gets element by [id]
    */
-  override fun getById(id: String): T? {
+  override fun getById(realm: Realm, id: String): T? {
     return realm.where(clazz).equalTo(Entity.ID_KEY, id).findFirst()
   }
 
   /**
    * Gets all elements from a class
    */
-  override fun getAll(): RealmResults<T> {
+  override fun getAll(realm: Realm): RealmResults<T> {
     return realm.where(clazz).findAll()
   }
 
   /**
    * Inserts or updates an [element]
    */
-  override fun save(element: T) {
+  override fun save(realm: Realm, element: T) {
     element.id = element.id ?: UUID.randomUUID().toString()
-    transaction(element) { realm.insertOrUpdate(element) }
+    transaction(realm, element) { realm.insertOrUpdate(element) }
   }
 
   /**
    * Deletes a specific [element]
    */
-  override fun delete(element: T) {
-    element.id?.let { delete(it) }
+  override fun delete(realm: Realm, element: T) {
+    element.id?.let { delete(realm, it) }
   }
 
   /**
    * Deletes an element by [id]
    */
-  override fun delete(id: String) {
+  override fun delete(realm: Realm, id: String) {
     realm.where(clazz).equalTo(Entity.ID_KEY, id).findFirst()?.apply {
-      transaction(this) {
+      transaction(realm, this) {
         this.deleteFromRealm()
       }
     }
@@ -64,7 +64,7 @@ abstract class DaoBase<T>(val realm: Realm, val clazz: Class<T>) : DAO<T> where 
   /**
    * Refreshes Realm instance
    */
-  override fun refresh() {
+  override fun refresh(realm: Realm) {
     realm.refresh()
   }
 }

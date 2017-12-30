@@ -14,7 +14,7 @@ class SongMapper(val phraseMapper: PhraseMapper) {
         if (entity.phrases.size > 0) entity.phrases.map { phraseMapper.toWrapper(it) }
         else ArrayList()
 
-    return SongWrapper(entity.id ?: "", entity.name, entity.artist, entity.getOriginalTone(),
-        phrases)
+    return SongWrapper(entity.id ?: "", entity.name, entity.artist, entity.getTone(),
+        entity.getOriginalTone(), phrases)
   }
 }

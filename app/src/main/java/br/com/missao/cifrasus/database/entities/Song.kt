@@ -31,14 +31,21 @@ open class Song() : RealmObject(), Entity {
   }
 
   constructor(name: String, artist: String, originalTone: Chord, tone: Chord,
-      lastView: Date = Date(), id: String = UUID.randomUUID().toString()) : this() {
+      lastView: Date = Date(), id: String? = UUID.randomUUID().toString(),
+      phrases: RealmList<Phrase> = RealmList()) : this() {
     this.id = id
     this.name = name
     this.artist = artist
     this.originalToneValue = originalTone.value
     this.toneValue = tone.value
     this.lastView = lastView
+    this.phrases = phrases
   }
+
+  fun copy(name: String = this.name, artist: String = this.artist,
+      originalTone: Chord = this.getOriginalTone(), tone: Chord = this.getTone(),
+      lastView: Date = this.lastView, id: String? = this.id, phrases: RealmList<Phrase> = this.phrases)
+      = Song(name, artist, originalTone, tone, lastView, id, phrases)
 
   fun getOriginalTone(): Chord {
     return Chord.getByValue(this.originalToneValue)
