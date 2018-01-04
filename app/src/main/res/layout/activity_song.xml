@@ -87,7 +87,6 @@
     android:layout_marginEnd="@dimen/fab_mini_margin"
     android:layout_gravity="end|bottom"
     app:fabSize="mini"
-    app:layout_behavior="br.com.missao.cifrasus.utils.ScrollAwareFabBehavior"
     app:srcCompat="@drawable/ic_tone_change"
     />
 

@@ -1,21 +1,26 @@
 <resources>
 
-    <!-- Base Theme -->
-    <style name="AppTheme" parent="AppTheme.Base"/>
+  <!-- Base Theme -->
+  <style name="AppTheme" parent="AppTheme.Base"/>
 
-    <!-- Base Theme -->
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorControlActivated">@color/colorActivated</item>
-    </style>
+  <!-- Base Theme -->
+  <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="colorControlActivated">@color/colorActivated</item>
+  </style>
 
-    <!-- Dialog Style -->
-    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">@color/colorActivated</item>
-        <item name="android:textColorPrimary">@color/primaryTextColor</item>
-        <item name="android:background">@color/white</item>
-    </style>
+  <!-- Toolbar -->
+  <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+    <item name="android:textSize">@dimen/fontsize_title</item>
+  </style>
+
+  <!-- Dialog Style -->
+  <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <item name="colorAccent">@color/colorActivated</item>
+    <item name="android:textColorPrimary">@color/primaryTextColor</item>
+    <item name="android:background">@color/white</item>
+  </style>
 
 </resources>

@@ -1,15 +1,19 @@
 <resources>
-    <string name="app_name">CifraSus</string>
-    <string name="menu_song_increase_font">Aumentar Fonte</string>
-    <string name="menu_song_decrease_font">Diminuir Fonte</string>
+  <string name="app_name">CifraSus</string>
+  <string name="menu_song_increase_font">Aumentar Fonte</string>
+  <string name="menu_song_decrease_font">Diminuir Fonte</string>
 
-    <string name="change_tone_song_activity">Alterar Tom</string>
-    <string name="change_font_song_activity">Ajustar Fonte</string>
-    <string name="add_in_playlist_song_activity">Adicionar em lista </string>
+  <string name="menu_bottom_navigation_artists">Artistas</string>
+  <string name="menu_bottom_navigation_songs">Músicas</string>
+  <string name="menu_bottom_navigation_playlist">Listas</string>
 
-    <string name="select_font_size">Ajuste tamanho da fonte</string>
-    <string name="select_tone">Ajuste o tom</string>
-    <string name="positive_button_text">OK</string>
-    <string name="negative_button_text">Cancel</string>
+  <string name="change_tone_song_activity">Alterar Tom</string>
+  <string name="change_font_song_activity">Ajustar Fonte</string>
+  <string name="add_in_playlist_song_activity">Adicionar em lista </string>
+
+  <string name="select_font_size">Ajuste tamanho da fonte</string>
+  <string name="select_tone">Ajuste o tom</string>
+  <string name="positive_button_text">OK</string>
+  <string name="negative_button_text">Cancel</string>
 
 </resources>
