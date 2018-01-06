@@ -19,30 +19,6 @@ abstract class FragmentBase : Fragment(), Serializable {
   protected open var TAG = FragmentBase::class.java.simpleName
 
   /**
-   * Injeta os modulos de dependencia do fragmento
-   */
-  open protected fun injectDependencies() {
-  }
-
-  /**
-   * Configura a fragment para o uso, preparando variavéis, eventos das views etc.
-   */
-  open protected fun setupComponents() {
-  }
-
-  /**
-   * Configura os eventos do fragmento.
-   */
-  open protected fun setupEvents() {
-  }
-
-  /**
-   * Carrega as variáveis do fragmento.
-   */
-  open protected fun loadFragment() {
-  }
-
-  /**
    * Evento de back pressed do fragmento.
    */
   open fun onBackPressed() {
