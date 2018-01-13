@@ -2,6 +2,7 @@ package br.com.missao.cifrasus.injections.components
 
 
 import br.com.missao.cifrasus.injections.modules.*
+import br.com.missao.cifrasus.mvps.ListSongMvpModelOperations
 import br.com.missao.cifrasus.mvps.SongMvpModelOperations
 import dagger.Component
 import javax.inject.Singleton
@@ -18,4 +19,9 @@ interface DomainComponent {
    * Obtains [SongMvpModelOperations]
    */
   fun getSongMvpDomainOperations(): SongMvpModelOperations
+
+  /**
+   * Obtains [ListSongMvpModelOperations]
+   */
+  fun getListSongMvpDomainOperation(): ListSongMvpModelOperations
 }

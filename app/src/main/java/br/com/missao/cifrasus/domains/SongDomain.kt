@@ -29,18 +29,16 @@ class SongDomain(val songDao: SongDao, val songMapper: SongMapper, val logger: L
   /**
    * Class's TAG
    */
-  val TAG = SongDomain::class.java.simpleName
+  private val TAG = SongDomain::class.java.simpleName
 
-  override fun getSong(id: Long) {
+  override fun getSong(id: String) {
     lateinit var realm: Realm
 
     Observable.defer {
       realm = Realm.getDefaultInstance()
-      val song = songDao.getAll(realm).first()
-      Observable.just(song?.id ?: this.populateDatabase())
+      Observable.just(songDao.getById(realm, id))
     }
         .subscribeOn(Schedulers.io())
-        .map { songDao.getById(realm, it)!! }
         .map(songMapper::toWrapper)
         .map {
           if (it.tone == it.originalTone) {

@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Default Margin -->
-    <dimen name="activity_margin">16dp</dimen>
+  <!-- Default Margin -->
+  <dimen name="activity_margin">16dp</dimen>
 
-    <!-- Fab Margin -->
-    <dimen name= "fab_normal_margin">16dp</dimen>
-    <dimen name= "fab_mini_margin">24dp</dimen>
+  <!-- Fab Margin -->
+  <dimen name="fab_normal_margin">16dp</dimen>
+  <dimen name="fab_mini_margin">24dp</dimen>
 
-    <!-- Cards -->
-    <dimen name="card_elevation_raised">8dp</dimen>
-    <dimen name="card_corner_radius">2dp</dimen>
+  <!-- Cards -->
+  <dimen name="card_elevation_raised">8dp</dimen>
+  <dimen name="card_corner_radius">2dp</dimen>
 
 
-    <!-- Font-Size -->
-    <dimen name="fontsize_headline">24sp</dimen>
-    <dimen name="fontsize_title">20sp</dimen>
-    <dimen name="fontsize_subhead">16sp</dimen>
-    <dimen name="fontsize_body">14sp</dimen>
-    <dimen name="fontsize_caption">12sp</dimen>
+  <!-- Font-Size -->
+  <dimen name="fontsize_headline">24sp</dimen>
+  <dimen name="fontsize_title">20sp</dimen>
+  <dimen name="fontsize_subhead">16sp</dimen>
+  <dimen name="fontsize_body">14sp</dimen>
+  <dimen name="fontsize_caption">12sp</dimen>
 
-    <!-- Spaces -->
-    <dimen name="space_gigantic_views">30dp</dimen>
-    <dimen name="space_big_views">20dp</dimen>
-    <dimen name="space_medium_big_views">15dp</dimen>
-    <dimen name="space_medium_views">12dp</dimen>
-    <dimen name="space_divider">8dp</dimen>
-    <dimen name="space_small_views">5dp</dimen>
-    <dimen name="space_little_views">2dp</dimen>
+  <!-- Spaces -->
+  <dimen name="space_gigantic_views">30dp</dimen>
+  <dimen name="space_big_views">20dp</dimen>
+  <dimen name="space_medium_big_views">15dp</dimen>
+  <dimen name="space_medium_views">12dp</dimen>
+  <dimen name="space_divider">8dp</dimen>
+  <dimen name="space_small_views">5dp</dimen>
+  <dimen name="space_little_views">2dp</dimen>
 
-    <!-- Image -->
-    <dimen name="image_size">48dp</dimen>
+  <!-- Image -->
+  <dimen name="image_size">48dp</dimen>
 
-    <!-- Song Activity -->
-    <dimen name="card_padding_end">85dp</dimen>
+  <!-- Song Activity -->
+  <dimen name="card_padding_end">85dp</dimen>
+
+  <!-- No data layout -->
+  <dimen name="image_no_registry_size">200dp</dimen>
+
 
 </resources>

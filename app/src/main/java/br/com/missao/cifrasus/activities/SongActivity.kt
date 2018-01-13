@@ -1,5 +1,6 @@
 package br.com.missao.cifrasus.activities
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.NestedScrollView
@@ -31,6 +32,8 @@ import br.com.missao.cifrasus.utils.PixelDimensions
 import kotlinx.android.synthetic.main.activity_song.*
 import kotlinx.android.synthetic.main.appbar_song.*
 import javax.inject.Inject
+import android.content.Intent
+import br.com.missao.cifrasus.constants.DefaultValues
 
 
 /**
@@ -54,6 +57,11 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
   var chordColor: Int = 0
 
   /**
+   * Song`s id
+   */
+  lateinit var songId: String
+
+  /**
    * Song's data
    */
   var song: SongWrapper? = null
@@ -72,6 +80,20 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
    * Indicates is the FAB is rotate
    */
   var isFabRotated = false
+
+  companion object {
+
+    /**
+     * Key to send a parameter representing the song id
+     */
+    private val EXTRA_SONG_ID = "EXTRA_SONG_ID"
+
+    /**
+     * Obtains the intent to start the activity
+     */
+    fun getStartIntent(context: Context, songId: String)
+      = Intent(context, SongActivity::class.java).apply { putExtra(EXTRA_SONG_ID, songId) }
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -93,6 +115,14 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
    * Configures View to be shown
    */
   fun setupComponents() {
+    songId = this.intent?.extras?.getString(EXTRA_SONG_ID, DefaultValues.STRING_DEFAULT) ?:
+             DefaultValues.STRING_DEFAULT
+
+    // Checks if activity was successful initialized
+    if(songId == DefaultValues.STRING_DEFAULT) {
+      finish()
+    }
+
     contextFontSize = PixelDimensions.convertSpToPixels(resources.getDimension(R.dimen.fontsize_title), this.resources)
     chordColor = ContextCompat.getColor(this, R.color.chordTextColor)
 
@@ -138,7 +168,7 @@ class SongActivity : AppCompatActivity(), SongMvpRequiredViewOperations {
 
   override fun onStart() {
     super.onStart()
-    presenter.getSong(1)
+    presenter.getSong(this.songId)
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {

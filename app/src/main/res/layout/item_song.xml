@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/llSongItemContainer"
+  android:layout_width="match_parent"
+  android:layout_height="70dp"
+  android:paddingTop="@dimen/space_medium_views"
+  android:paddingBottom="@dimen/space_medium_views"
+  android:paddingLeft="@dimen/activity_margin"
+  android:paddingRight="@dimen/activity_margin"
+  android:gravity="center"
+  android:orientation="vertical">
+
+  <TextView
+    android:id="@+id/textSongName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/space_little_views"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textColor="@color/primaryTextColor"
+    android:textSize="@dimen/fontsize_subhead"
+    tools:text="Sweet Child of Mine"
+    />
+
+  <TextView
+    android:id="@+id/textSongArtist"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textColor="@color/secondaryTextColor"
+    android:textSize="@dimen/fontsize_body"
+    tools:text="Guns `n` Rose"
+    />
+
+</LinearLayout>

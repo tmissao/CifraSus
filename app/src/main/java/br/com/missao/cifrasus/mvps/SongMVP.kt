@@ -1,6 +1,5 @@
 package br.com.missao.cifrasus.mvps
 
-import br.com.missao.cifrasus.model.wrappers.PhraseWrapper
 import br.com.missao.cifrasus.model.wrappers.SongWrapper
 
 /**
@@ -12,15 +11,15 @@ import br.com.missao.cifrasus.model.wrappers.SongWrapper
  */
 interface SongMvpRequiredViewOperations {
 
-    /**
-     * Receives Song
-     */
-    fun onGetSong(music: SongWrapper)
+  /**
+   * Receives Song
+   */
+  fun onGetSong(music: SongWrapper)
 
-    /**
-    * Receives Song with tone changed
-    */
-    fun onChangeTone(song: SongWrapper)
+  /**
+   * Receives Song with tone changed
+   */
+  fun onChangeTone(song: SongWrapper)
 
 }
 
@@ -29,20 +28,20 @@ interface SongMvpRequiredViewOperations {
  */
 interface SongMvpPresenterOperations {
 
-    /**
-     * Obtains Song Chords by it's [id]
-     */
-    fun getSong(id: Long)
+  /**
+   * Obtains Song Chords by it's [id]
+   */
+  fun getSong(id: String)
 
-    /**
-    * Changes Music Tone by [degree]
-    */
-    fun changeTone(song: SongWrapper, degree: Int)
+  /**
+   * Changes Music Tone by [degree]
+   */
+  fun changeTone(song: SongWrapper, degree: Int)
 
-    /**
-     * Defines view reference
-     */
-    fun setView(view: SongMvpRequiredViewOperations)
+  /**
+   * Defines view reference
+   */
+  fun setView(view: SongMvpRequiredViewOperations)
 
 }
 
@@ -51,15 +50,15 @@ interface SongMvpPresenterOperations {
  */
 interface SongMvpRequiredPresenterOperations {
 
-    /**
-     * Receives Song
-     */
-    fun onGetSong(music: SongWrapper)
+  /**
+   * Receives Song
+   */
+  fun onGetSong(music: SongWrapper)
 
-    /**
-    * Receives Song with tone changed
-    */
-    fun onChangeTone(song: SongWrapper)
+  /**
+   * Receives Song with tone changed
+   */
+  fun onChangeTone(song: SongWrapper)
 
 }
 
@@ -68,18 +67,18 @@ interface SongMvpRequiredPresenterOperations {
  */
 interface SongMvpModelOperations {
 
-    /**
-     * Obtains Song Chords by it's [id]
-     */
-    fun getSong(id: Long)
+  /**
+   * Obtains Song Chords by it's [id]
+   */
+  fun getSong(id: String)
 
-    /**
-    * Changes Music Tone by [degree]
-    */
-    fun changeTone(song: SongWrapper, degree: Int)
+  /**
+   * Changes Music Tone by [degree]
+   */
+  fun changeTone(song: SongWrapper, degree: Int)
 
-    /**
-     * Defines presenter reference
-     */
-    fun setPresenter(presenter: SongMvpRequiredPresenterOperations)
+  /**
+   * Defines presenter reference
+   */
+  fun setPresenter(presenter: SongMvpRequiredPresenterOperations)
 }

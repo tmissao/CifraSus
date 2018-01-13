@@ -2,6 +2,7 @@ package br.com.missao.cifrasus.mappers
 
 import br.com.missao.cifrasus.database.entities.Song
 import br.com.missao.cifrasus.model.wrappers.PhraseWrapper
+import br.com.missao.cifrasus.model.wrappers.SongInfoWrapper
 import br.com.missao.cifrasus.model.wrappers.SongWrapper
 
 /**
@@ -17,4 +18,7 @@ class SongMapper(val phraseMapper: PhraseMapper) {
     return SongWrapper(entity.id ?: "", entity.name, entity.artist, entity.getTone(),
         entity.getOriginalTone(), phrases)
   }
+
+  fun toInfoWrapper(entity: Song) = SongInfoWrapper(entity.id!!, entity.name, entity.artist)
+
 }

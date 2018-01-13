@@ -1,9 +1,11 @@
 package br.com.missao.cifrasus.presenters
 
 import br.com.missao.cifrasus.bases.PresenterBase
-import br.com.missao.cifrasus.model.wrappers.PhraseWrapper
 import br.com.missao.cifrasus.model.wrappers.SongWrapper
-import br.com.missao.cifrasus.mvps.*
+import br.com.missao.cifrasus.mvps.SongMvpModelOperations
+import br.com.missao.cifrasus.mvps.SongMvpPresenterOperations
+import br.com.missao.cifrasus.mvps.SongMvpRequiredPresenterOperations
+import br.com.missao.cifrasus.mvps.SongMvpRequiredViewOperations
 
 /**
  * Song's Presenter
@@ -17,7 +19,7 @@ class SongPresenter(domain: SongMvpModelOperations)
     super.domain?.setPresenter(this)
   }
 
-  override fun getSong(id: Long) {
+  override fun getSong(id: String) {
     domain?.getSong(id)
   }
 

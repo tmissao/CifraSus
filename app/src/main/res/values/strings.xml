@@ -16,4 +16,9 @@
   <string name="positive_button_text">OK</string>
   <string name="negative_button_text">Cancel</string>
 
+  <string name="no_songs"> Você não possui nenhuma música, adicione utilizando o botão
+    \'+\'</string>
+
+  <string name="no_data"> Aparece que você não possui nenhum registro no momento </string>>
+
 </resources>
