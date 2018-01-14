@@ -18,38 +18,44 @@ import javax.inject.Singleton
 @Module
 class RetrofitModule {
 
-    /**
-     * Provides API base URL
-     */
-    @Provides @Singleton fun providesBaseUrl()
-            = "https://www.reddit.com"
+  /**
+   * Provides API base URL
+   */
+  @Provides
+  @Singleton
+  fun providesBaseUrl()
+      = "https://q1prxefi32.execute-api.us-east-1.amazonaws.com/production/services/"
 
-    /**
-     * Provides [OkHttpClient] with an [HttpLoggingInterceptor] for debug purposes
-     */
-    @Provides @Singleton fun providesOkHttpClient(context: Context): OkHttpClient {
-        val interceptorLogger = HttpLoggingInterceptor()
-        interceptorLogger.level = HttpLoggingInterceptor.Level.BODY
+  /**
+   * Provides [OkHttpClient] with an [HttpLoggingInterceptor] for debug purposes
+   */
+  @Provides
+  @Singleton
+  fun providesOkHttpClient(context: Context): OkHttpClient {
+    val interceptorLogger = HttpLoggingInterceptor()
+    interceptorLogger.level = HttpLoggingInterceptor.Level.BODY
 
-        val interceptorConnectivity = ConnectivityInterceptor(context)
+    val interceptorConnectivity = ConnectivityInterceptor(context)
 
-        return OkHttpClient.Builder()
-                .addInterceptor(interceptorLogger)
-                .addInterceptor(interceptorConnectivity)
-                .connectTimeout(2, TimeUnit.SECONDS)
-                .build()
-    }
+    return OkHttpClient.Builder()
+        .addInterceptor(interceptorLogger)
+        .addInterceptor(interceptorConnectivity)
+        .connectTimeout(2, TimeUnit.SECONDS)
+        .build()
+  }
 
-    /**
-     * Provides [Retrofit] rest client on the [baseUrl], and uses [client] to log its requests
-     */
-    @Provides @Singleton fun providesRetrofit(client: OkHttpClient, baseUrl: String): Retrofit {
-        return Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(client)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-    }
+  /**
+   * Provides [Retrofit] rest client on the [baseUrl], and uses [client] to log its requests
+   */
+  @Provides
+  @Singleton
+  fun providesRetrofit(client: OkHttpClient, baseUrl: String): Retrofit {
+    return Retrofit.Builder()
+        .baseUrl(baseUrl)
+        .client(client)
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+  }
 
 }

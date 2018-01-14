@@ -1,6 +1,7 @@
 package br.com.missao.cifrasus.injections.components
 
 
+import br.com.missao.cifrasus.activities.HomeActivity
 import br.com.missao.cifrasus.activities.SongActivity
 import br.com.missao.cifrasus.fragments.SongsFragment
 import br.com.missao.cifrasus.injections.modules.*
@@ -21,7 +22,13 @@ interface ViewComponent {
   fun inject(activity: SongActivity)
 
   /**
+   * Injects in [HomeActivity] its dependencies
+   */
+  fun inject(activity: HomeActivity)
+
+  /**
    * Injects in [SongsFragment] its dependencies
    */
   fun inject(fragment: SongsFragment)
+
 }

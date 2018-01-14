@@ -13,7 +13,7 @@
         android:layout_marginTop="@dimen/space_medium_big_views"
         android:ellipsize="middle"
         android:gravity="center"
-        android:maxLines="1"
+        android:singleLine="true"
         android:textColor="@color/secondaryTextColor"
         android:textSize="@dimen/fontsize_title"
         tools:text="Change font size"

@@ -1,11 +1,9 @@
 package br.com.missao.cifrasus.injections.modules
 
-import br.com.missao.cifrasus.mvps.ListSongMvpModelOperations
-import br.com.missao.cifrasus.mvps.ListSongMvpPresenterOperations
-import br.com.missao.cifrasus.mvps.SongMvpModelOperations
-import br.com.missao.cifrasus.mvps.SongMvpPresenterOperations
-import br.com.missao.cifrasus.presenters.SongPresenter
+import br.com.missao.cifrasus.mvps.*
+import br.com.missao.cifrasus.presenters.HomePresenter
 import br.com.missao.cifrasus.presenters.ListSongPresenter
+import br.com.missao.cifrasus.presenters.SongPresenter
 import dagger.Module
 import dagger.Provides
 
@@ -28,4 +26,11 @@ class PresenterModule {
   @Provides
   fun providesListSongPresenter(domain: ListSongMvpModelOperations): ListSongMvpPresenterOperations
       = ListSongPresenter(domain)
+
+  /**
+   * Provides [HomeMvpPresenterOperations]
+   */
+  @Provides
+  fun providesHomePresenter(domain: HomeMvpModelOperations): HomeMvpPresenterOperations
+      = HomePresenter(domain)
 }

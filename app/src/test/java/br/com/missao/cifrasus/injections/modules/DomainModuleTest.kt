@@ -1,6 +1,6 @@
 package br.com.missao.cifrasus.injections.modules
 
-import br.com.missao.cifrasus.apis.RedditAPI
+import br.com.missao.cifrasus.apis.ChordsAPI
 import br.com.missao.cifrasus.interfaces.Logger
 import br.com.missao.cifrasus.mappers.RedditNewsMapper
 import br.com.missao.cifrasus.mvps.SongMvpModelOperations
@@ -13,7 +13,7 @@ import org.junit.Test
  */
 class DomainModuleTest {
 
-    val api: RedditAPI = mock()
+    val api: ChordsAPI = mock()
     val logger: Logger = mock()
     val mapper: RedditNewsMapper = mock()
     val module: DomainModule = DomainModule()

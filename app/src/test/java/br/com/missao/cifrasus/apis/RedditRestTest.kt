@@ -13,21 +13,21 @@ import org.junit.Test
 import retrofit2.Retrofit
 
 /**
- * Testes para a classe [RedditRest]
+ * Testes para a classe [ChordsRest]
  */
 class RedditRestTest {
 
-    lateinit var api: RedditAPI
-    lateinit var rest: RedditRest
+    lateinit var api: ChordsAPI
+    lateinit var rest: ChordsRest
     lateinit var retrofit: Retrofit
 
     @Before
     fun setUp() {
         api = mock()
         retrofit = mock()
-        whenever(retrofit.create(RedditAPI::class.java)).doReturn(api)
+        whenever(retrofit.create(ChordsAPI::class.java)).doReturn(api)
 
-        rest = RedditRest(retrofit)
+        rest = ChordsRest(retrofit)
     }
 
     @After

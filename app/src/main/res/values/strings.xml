@@ -3,22 +3,40 @@
   <string name="menu_song_increase_font">Aumentar Fonte</string>
   <string name="menu_song_decrease_font">Diminuir Fonte</string>
 
+  <!-- Connection Error -->
+  <string name="connection_error_title">Sem acesso à internet </string>
+  <string name="connection_error_message">Não conseguimos obter sua cifra, por favor verifique
+    sua conexão e tente novamente.
+  </string>
+
+  <!-- Home Menu -->
   <string name="menu_bottom_navigation_artists">Artistas</string>
   <string name="menu_bottom_navigation_songs">Músicas</string>
   <string name="menu_bottom_navigation_playlist">Listas</string>
 
+  <!-- Song Activity -->
   <string name="change_tone_song_activity">Alterar Tom</string>
   <string name="change_font_song_activity">Ajustar Fonte</string>
   <string name="add_in_playlist_song_activity">Adicionar em lista </string>
 
-  <string name="select_font_size">Ajuste tamanho da fonte</string>
+  <string name="select_font_size">Ajustar tamanho da fonte</string>
   <string name="select_tone">Ajuste o tom</string>
   <string name="positive_button_text">OK</string>
-  <string name="negative_button_text">Cancel</string>
+  <string name="negative_button_text">Cancelar</string>
 
+  <!-- No Data -->
   <string name="no_songs"> Você não possui nenhuma música, adicione utilizando o botão
     \'+\'</string>
-
   <string name="no_data"> Aparece que você não possui nenhum registro no momento </string>>
+
+  <!-- Home Activity -->
+  <string name="add_chord_title">Adicionar cifra</string>
+  <string name="add_chord_instructions">Insira a URL da cifra desejada no campo abaixo \n (endereço do navegador)</string>
+  <string name="add_chord_url_hint">https://www.cifraclub.com.br/artista/musica</string>
+  <string name="add_chord_positive_button_text">Adicionar</string>
+
+  <string name="add_chord_title_error">Erro ao obter cifra </string>
+  <string name="add_chord_message_error">Não conseguimos obter sua cifra, por favor tente novamente
+  </string>
 
 </resources>

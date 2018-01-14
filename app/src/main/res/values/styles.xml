@@ -23,4 +23,9 @@
     <item name="android:background">@color/white</item>
   </style>
 
+  <!-- Progress Bar Style -->
+  <style name="AppProgressBarStyle" parent="Theme.AppCompat.Light">
+    <item name="colorControlActivated">@color/colorAccent</item>
+  </style>
+
 </resources>

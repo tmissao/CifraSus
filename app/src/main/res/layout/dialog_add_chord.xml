@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:padding="@dimen/space_medium_views"
+  android:orientation="vertical">
+
+  <TextView
+    android:id="@+id/textLyrics"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginTop="@dimen/space_medium_big_views"
+    android:layout_marginBottom="@dimen/space_medium_views"
+    android:gravity="center"
+    android:lineSpacingExtra="@dimen/space_little_views"
+    android:text="@string/add_chord_instructions"
+    android:textColor="@color/secondaryTextColor"
+    android:textSize="@dimen/fontsize_subhead"
+    />
+
+  <EditText
+    android:id="@+id/etChordURL"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:hint="@string/add_chord_url_hint"
+    android:inputType="textUri"
+    android:textColor="@color/primaryTextColor"
+    android:textSize="@dimen/fontsize_body"
+    />
+</LinearLayout>

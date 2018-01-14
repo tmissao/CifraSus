@@ -5,6 +5,7 @@
   <color name="whiteOpacity">#C2CCCCCC</color>
 
   <color name="colorPrimary">#3F51B5</color>
+  <color name="colorPrimaryOpacity">#613F51B5</color>
   <color name="colorPrimaryDark">#303F9F</color>
   <color name="colorAccent">#FF4081</color>
   <color name="colorActivated">#007CC8</color>

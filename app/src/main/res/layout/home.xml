@@ -5,7 +5,6 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-
   <android.support.design.widget.AppBarLayout
     android:id="@+id/appBarLayout"
     android:layout_width="match_parent"
@@ -26,6 +25,16 @@
     android:layout_marginBottom="?attr/actionBarSize"
     >
 
+    <android.support.design.widget.FloatingActionButton
+      android:id="@+id/fabAdd"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/fab_normal_margin"
+      android:layout_gravity="end|bottom"
+      app:fabSize="normal"
+      app:srcCompat="@drawable/ic_add"
+      />
+
   </FrameLayout>
 
   <android.support.design.widget.BottomNavigationView
@@ -37,5 +46,7 @@
     app:itemIconTint="@drawable/selector_navigation_menu"
     app:itemTextColor="@drawable/selector_navigation_menu"
     app:menu="@menu/bottom_navigation_menu"/>
+
+  <include layout="@layout/loading"/>
 
 </android.support.design.widget.CoordinatorLayout>
